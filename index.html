@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>meeha — Data Engineering Consulting</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #08090c;
+      --surface:  #0f1117;
+      --card:     #13151d;
+      --border:   #1e2130;
+      --accent:   #4f6ef7;
+      --accent2:  #7c3aed;
+      --glow:     rgba(79,110,247,.18);
+      --text:     #e8eaf0;
+      --muted:    #7a7f99;
+      --white:    #ffffff;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.1rem 6%;
+      background: rgba(8,9,12,.75);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.55rem; font-weight: 700;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      letter-spacing: -.02em;
+    }
+
+    .nav-links { display: flex; gap: 2.2rem; list-style: none; }
+    .nav-links a {
+      color: var(--muted); text-decoration: none; font-size: .9rem;
+      font-weight: 500; transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--white); }
+
+    .nav-cta {
+      background: var(--accent); color: #fff;
+      padding: .55rem 1.3rem; border-radius: 8px;
+      text-decoration: none; font-size: .88rem; font-weight: 600;
+      transition: opacity .2s, transform .15s;
+    }
+    .nav-cta:hover { opacity: .88; transform: translateY(-1px); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center;
+      padding: 7rem 6% 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 70% 55% at 50% 20%, rgba(79,110,247,.13) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 40% at 80% 80%, rgba(124,58,237,.1) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .badge {
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: rgba(79,110,247,.1); border: 1px solid rgba(79,110,247,.3);
+      color: #8fa8ff; border-radius: 999px;
+      padding: .35rem 1rem; font-size: .8rem; font-weight: 500;
+      margin-bottom: 1.8rem;
+    }
+    .badge-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); animation: pulse 2s infinite; }
+
+    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(.8)} }
+
+    .hero h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      font-weight: 700; line-height: 1.08;
+      letter-spacing: -.03em; margin-bottom: 1.3rem;
+      color: var(--white);
+    }
+
+    .hero h1 span {
+      background: linear-gradient(135deg, var(--accent) 20%, var(--accent2) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+
+    .hero p {
+      max-width: 580px; color: var(--muted);
+      font-size: clamp(1rem, 2vw, 1.15rem);
+      margin: 0 auto 2.5rem;
+    }
+
+    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color: #fff; text-decoration: none;
+      padding: .85rem 2rem; border-radius: 10px;
+      font-weight: 600; font-size: .95rem;
+      box-shadow: 0 4px 24px var(--glow);
+      transition: transform .18s, box-shadow .18s;
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 36px var(--glow); }
+
+    .btn-ghost {
+      border: 1px solid var(--border); color: var(--text);
+      text-decoration: none; padding: .85rem 2rem;
+      border-radius: 10px; font-weight: 500; font-size: .95rem;
+      transition: border-color .2s, color .2s;
+    }
+    .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+    .hero-stats {
+      display: flex; gap: 3rem; margin-top: 4rem;
+      justify-content: center; flex-wrap: wrap;
+    }
+    .stat { text-align: center; }
+    .stat-num { font-family: 'Space Grotesk', sans-serif; font-size: 2rem; font-weight: 700; color: var(--white); }
+    .stat-label { font-size: .8rem; color: var(--muted); margin-top: .2rem; }
+
+    /* ── SECTION SHARED ── */
+    section { padding: 6rem 6%; }
+    .section-tag {
+      display: inline-block; color: var(--accent);
+      font-size: .78rem; font-weight: 600; letter-spacing: .12em;
+      text-transform: uppercase; margin-bottom: .9rem;
+    }
+    .section-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      font-weight: 700; color: var(--white);
+      letter-spacing: -.02em; margin-bottom: 1rem;
+    }
+    .section-sub { color: var(--muted); max-width: 520px; font-size: 1.02rem; }
+    .section-head { margin-bottom: 3.5rem; }
+    .center { text-align: center; }
+    .center .section-sub { margin: 0 auto; }
+
+    /* ── SERVICES ── */
+    #services { background: var(--surface); }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .service-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 16px; padding: 2rem;
+      transition: border-color .25s, transform .25s;
+      position: relative; overflow: hidden;
+    }
+    .service-card::after {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      opacity: 0; transition: opacity .25s;
+    }
+    .service-card:hover { border-color: rgba(79,110,247,.4); transform: translateY(-4px); }
+    .service-card:hover::after { opacity: 1; }
+
+    .service-icon {
+      width: 48px; height: 48px; border-radius: 12px;
+      background: rgba(79,110,247,.12); border: 1px solid rgba(79,110,247,.2);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem; margin-bottom: 1.2rem;
+    }
+    .service-card h3 { font-size: 1.08rem; font-weight: 600; color: var(--white); margin-bottom: .6rem; }
+    .service-card p { color: var(--muted); font-size: .9rem; line-height: 1.65; }
+
+    /* ── HOW WE WORK ── */
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem; counter-reset: step;
+    }
+    .step { position: relative; }
+    .step-num {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 3rem; font-weight: 700;
+      color: rgba(79,110,247,.15); margin-bottom: .5rem;
+      line-height: 1;
+    }
+    .step h3 { font-size: 1rem; font-weight: 600; color: var(--white); margin-bottom: .5rem; }
+    .step p { color: var(--muted); font-size: .88rem; line-height: 1.65; }
+
+    /* ── TECH STACK ── */
+    #stack { background: var(--surface); }
+
+    .stack-grid {
+      display: flex; flex-wrap: wrap; gap: .75rem; justify-content: center;
+    }
+    .stack-pill {
+      background: var(--card); border: 1px solid var(--border);
+      color: var(--text); border-radius: 999px;
+      padding: .45rem 1.1rem; font-size: .85rem; font-weight: 500;
+      transition: border-color .2s, color .2s;
+    }
+    .stack-pill:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* ── WHY MEEHA ── */
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+    }
+    .why-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 14px; padding: 1.6rem;
+    }
+    .why-icon { font-size: 1.6rem; margin-bottom: .8rem; }
+    .why-card h3 { font-size: 1rem; font-weight: 600; color: var(--white); margin-bottom: .4rem; }
+    .why-card p { color: var(--muted); font-size: .88rem; line-height: 1.65; }
+
+    /* ── CTA ── */
+    #contact {
+      background: linear-gradient(135deg, rgba(79,110,247,.08), rgba(124,58,237,.08));
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .cta-box { max-width: 600px; margin: 0 auto; text-align: center; }
+    .cta-box .section-title { margin-bottom: 1rem; }
+    .cta-box p { color: var(--muted); margin-bottom: 2.2rem; }
+    .cta-email {
+      font-size: 1.1rem; color: var(--accent); text-decoration: none;
+      font-weight: 600; border-bottom: 1px solid rgba(79,110,247,.4);
+      padding-bottom: 2px;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 2.5rem 6%;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 1rem;
+      border-top: 1px solid var(--border);
+    }
+    .footer-logo {
+      font-family: 'Space Grotesk', sans-serif; font-size: 1.2rem; font-weight: 700;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    footer p { color: var(--muted); font-size: .82rem; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 680px) {
+      nav { padding: 1rem 4%; }
+      .nav-links { display: none; }
+      section { padding: 4rem 4%; }
+      .hero-stats { gap: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">meeha</div>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#stack">Stack</a></li>
+    <li><a href="#why">Why us</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Get in touch</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="badge"><span class="badge-dot"></span> Data Engineering Consulting</div>
+  <h1>Turn your data<br/>into a <span>competitive edge</span></h1>
+  <p>meeha helps companies build reliable, scalable data infrastructure — from raw pipelines to production-grade analytics platforms.</p>
+  <div class="hero-btns">
+    <a href="#contact" class="btn-primary">Start a project →</a>
+    <a href="#services" class="btn-ghost">Our services</a>
+  </div>
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-num">50+</div><div class="stat-label">Projects delivered</div></div>
+    <div class="stat"><div class="stat-num">10+</div><div class="stat-label">Industries served</div></div>
+    <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Remote-first</div></div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-head center">
+    <span class="section-tag">What we do</span>
+    <h2 class="section-title">End-to-end data engineering</h2>
+    <p class="section-sub">From architecture to deployment — we cover the full data engineering lifecycle.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon">🏗️</div>
+      <h3>Data Architecture & Strategy</h3>
+      <p>We design scalable data platforms tailored to your business needs — lakehouse, warehouse, or hybrid. Built to last, built to grow.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">⚙️</div>
+      <h3>Pipeline Engineering</h3>
+      <p>Reliable, testable, observable ETL/ELT pipelines using modern tools. Batch, streaming, or both — we handle the complexity so you don't have to.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">☁️</div>
+      <h3>Cloud Data Platform Setup</h3>
+      <p>Deploy and optimize your stack on AWS, GCP, or Azure. We provision, configure, and document everything — so your team owns it confidently.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">📊</div>
+      <h3>Analytics Engineering</h3>
+      <p>Transform raw data into clean, trusted datasets your analysts love. dbt models, semantic layers, and data contracts included.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🔍</div>
+      <h3>Data Quality & Observability</h3>
+      <p>Know before your users do. We implement testing, monitoring, and alerting so bad data never reaches production dashboards.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🚀</div>
+      <h3>Team Enablement</h3>
+      <p>Workshops, documentation, and code review sessions to level up your internal team. We build the foundation, you take it further.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process">
+  <div class="section-head">
+    <span class="section-tag">How we work</span>
+    <h2 class="section-title">Simple, transparent process</h2>
+    <p class="section-sub">No bloat. No surprises. Just focused delivery.</p>
+  </div>
+  <div class="process-steps">
+    <div class="step">
+      <div class="step-num">01</div>
+      <h3>Discovery call</h3>
+      <p>We learn about your data landscape, pain points, and goals. Free, no commitment, 45 minutes.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <h3>Proposal & scoping</h3>
+      <p>We send a clear proposal: deliverables, timeline, and price. No ambiguity.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <h3>Build & iterate</h3>
+      <p>We work in short cycles with regular check-ins. You see progress early and often.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">04</div>
+      <h3>Handover & support</h3>
+      <p>Full documentation and knowledge transfer. We stick around for questions after launch.</p>
+    </div>
+  </div>
+</section>
+
+<!-- STACK -->
+<section id="stack">
+  <div class="section-head center">
+    <span class="section-tag">Technology</span>
+    <h2 class="section-title">Our tech stack</h2>
+    <p class="section-sub">We work with the modern data stack — battle-tested, open-source-first, and cloud-native.</p>
+  </div>
+  <div class="stack-grid">
+    <span class="stack-pill">Apache Spark</span>
+    <span class="stack-pill">Apache Kafka</span>
+    <span class="stack-pill">Apache Airflow</span>
+    <span class="stack-pill">dbt</span>
+    <span class="stack-pill">Snowflake</span>
+    <span class="stack-pill">BigQuery</span>
+    <span class="stack-pill">Redshift</span>
+    <span class="stack-pill">Databricks</span>
+    <span class="stack-pill">Delta Lake</span>
+    <span class="stack-pill">Apache Iceberg</span>
+    <span class="stack-pill">Prefect</span>
+    <span class="stack-pill">DuckDB</span>
+    <span class="stack-pill">Flink</span>
+    <span class="stack-pill">AWS S3 / Glue</span>
+    <span class="stack-pill">GCP Dataflow</span>
+    <span class="stack-pill">Azure Data Factory</span>
+    <span class="stack-pill">Terraform</span>
+    <span class="stack-pill">Python</span>
+    <span class="stack-pill">SQL</span>
+    <span class="stack-pill">Scala</span>
+    <span class="stack-pill">Great Expectations</span>
+    <span class="stack-pill">Monte Carlo</span>
+  </div>
+</section>
+
+<!-- WHY MEEHA -->
+<section id="why">
+  <div class="section-head">
+    <span class="section-tag">Why meeha</span>
+    <h2 class="section-title">We care about the work,<br/>not just the invoice</h2>
+  </div>
+  <div class="why-grid">
+    <div class="why-card">
+      <div class="why-icon">🎯</div>
+      <h3>Senior-only team</h3>
+      <p>No junior handoffs. The people on your project are the people who talk to you.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">🔓</div>
+      <h3>No vendor lock-in</h3>
+      <p>We recommend what's right for you, not what's right for our partners. Open-source first.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">📐</div>
+      <h3>Code you can own</h3>
+      <p>Clean, documented, tested code. Not a black box. Your team can maintain it the day we leave.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">⚡</div>
+      <h3>Fast to start</h3>
+      <p>No months of onboarding. We ramp up quickly and deliver value in weeks, not quarters.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA / CONTACT -->
+<section id="contact">
+  <div class="cta-box">
+    <span class="section-tag">Get in touch</span>
+    <h2 class="section-title">Ready to build something solid?</h2>
+    <p>Tell us about your data challenge. We'll get back to you within 24 hours.</p>
+    <a href="mailto:hello@meeha.io" class="cta-email">hello@meeha.io</a>
+    <br/><br/>
+    <a href="mailto:hello@meeha.io" class="btn-primary">Book a discovery call →</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">meeha</div>
+  <p>© 2026 meeha. Data Engineering Consulting.</p>
+</footer>
+
+</body>
+</html>
