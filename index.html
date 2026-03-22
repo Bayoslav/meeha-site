@@ -364,11 +364,20 @@
       #contact { grid-template-columns: 1fr; gap: 3rem; }
       .approach-steps { grid-template-columns: 1fr 1fr; }
       .step { border-bottom: 1px solid var(--border); }
-      .service-row { grid-template-columns: 2.5rem 1fr; }
-      .service-row p, .service-tags { grid-column: 2; }
+      .service-row {
+        grid-template-columns: 2.5rem 1fr;
+        grid-template-rows: auto auto;
+      }
+      .service-illus {
+        grid-column: 1 / -1;
+        max-width: 100%;
+        aspect-ratio: 16/7;
+        margin-top: 1rem;
+      }
       .services-header { flex-direction: column; align-items: flex-start; }
       .stack-header { flex-direction: column; align-items: flex-start; }
       section { padding: 5rem 5%; }
+      .stack-cat { grid-template-columns: 110px 1fr; }
     }
 
     @media (max-width: 600px) {
@@ -377,6 +386,9 @@
       .approach-steps { grid-template-columns: 1fr; }
       .about-values { grid-template-columns: 1fr; }
       .value-item { border-right: none; }
+      .service-illus { aspect-ratio: 16/8; }
+      .stack-cat { grid-template-columns: 1fr; }
+      .stack-cat-name { border-right: none; border-bottom: 1px solid var(--border); padding: .8rem 1.2rem; }
     }
   </style>
 </head>
