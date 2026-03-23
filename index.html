@@ -72,11 +72,34 @@
       min-height: 100vh;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      align-items: end;
-      padding: 12rem 7% 6rem;
+      align-items: center;
+      padding: 10rem 7% 6rem;
       gap: 4rem;
       border-bottom: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
     }
+
+    /* subtle grid background */
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(200,240,74,.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(200,240,74,.04) 1px, transparent 1px);
+      background-size: 48px 48px;
+      pointer-events: none;
+    }
+
+    /* fade edges of grid */
+    .hero::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 80% 80% at 50% 50%, transparent 30%, var(--bg) 100%);
+      pointer-events: none;
+    }
+
+    .hero-left, .hero-right { position: relative; z-index: 1; }
 
     .hero-left {}
 
@@ -126,6 +149,22 @@
     .hero-note {
       margin-top: 1.2rem;
       font-size: .78rem; color: var(--muted);
+    }
+
+    .hero-stats {
+      display: flex; gap: 2.5rem; margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+    }
+    .hero-stat { display: flex; flex-direction: column; gap: .2rem; }
+    .hero-stat-num {
+      font-family: 'Fraunces', serif;
+      font-size: 1.8rem; font-weight: 300;
+      color: var(--white); line-height: 1;
+    }
+    .hero-stat-label {
+      font-size: .72rem; color: var(--muted);
+      letter-spacing: .06em; text-transform: uppercase;
     }
 
     /* ── MARQUEE ── */
@@ -358,7 +397,8 @@
 
     /* ── RESPONSIVE ── */
     @media (max-width: 900px) {
-      .hero { grid-template-columns: 1fr; padding: 9rem 5% 5rem; }
+      .hero { grid-template-columns: 1fr; padding: 8rem 5% 4rem; min-height: auto; }
+      .hero h1 { font-size: clamp(2.4rem, 9vw, 3.5rem); }
       .hero-right p { max-width: 100%; }
       #about { grid-template-columns: 1fr; gap: 3rem; padding: 5rem 5%; }
       #contact { grid-template-columns: 1fr; gap: 3rem; }
@@ -424,6 +464,21 @@
     </p>
     <a href="#contact" class="btn-primary">Start a conversation →</a>
     <div class="hero-note">No sales pitch. Just an honest 45-minute call.</div>
+
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <span class="hero-stat-num">50+</span>
+        <span class="hero-stat-label">Projects delivered</span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-num">8+</span>
+        <span class="hero-stat-label">Industries</span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-num">100%</span>
+        <span class="hero-stat-label">Remote-first</span>
+      </div>
+    </div>
   </div>
 </section>
 
