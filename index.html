@@ -413,6 +413,11 @@
 
     .cta-left .section-title { margin-bottom: 1.5rem; }
     .cta-left p { color: var(--muted); font-size: .95rem; line-height: 1.75; }
+    .location-badge {
+      display: flex; flex-wrap: wrap; gap: .5rem; align-items: center;
+      margin-top: 1.8rem; font-size: .82rem; color: var(--muted);
+    }
+    .loc-dot { color: var(--border); }
 
     .cta-right {
       border: 1px solid var(--border);
@@ -509,18 +514,20 @@
 <!-- HERO -->
 <section class="hero">
   <div class="hero-left">
-    <div class="hero-eyebrow">Data Engineering Consulting</div>
-    <h1>We help companies<br/><em>take their data</em><br/>seriously.</h1>
+    <div class="hero-eyebrow">Data Engineering · Novi Sad → Scandinavia & beyond</div>
+    <h1>We make<br/><em>data pipelines</em><br/>boring again.</h1>
   </div>
   <div class="hero-right">
     <p>
-      meeha is a boutique consulting practice that works with companies to build
-      <strong>data infrastructure that actually works</strong> — reliable, observable,
-      and owned by your team when we're done.
+      meeha is a data engineering consultancy based in Novi Sad, Serbia.
+      We work mostly with <strong>Scandinavian scale-ups</strong> that have outgrown
+      their first data stack and need someone to actually fix it —
+      not just advise on it.
     </p>
     <p>
-      We don't hand you a deck. We get into the code, the architecture, and the
-      business problem together.
+      Boring pipelines are good pipelines. They run, they're tested,
+      nobody wakes up at 3am because of them.
+      That's what we build.
     </p>
     <a href="#contact" class="btn-primary">Start a conversation →</a>
     <div class="hero-note">No sales pitch. Just an honest 45-minute call.</div>
@@ -531,8 +538,8 @@
         <span class="hero-stat-label">Projects delivered</span>
       </div>
       <div class="hero-stat">
-        <span class="hero-stat-num">8+</span>
-        <span class="hero-stat-label">Industries</span>
+        <span class="hero-stat-num">SE · NO · DK</span>
+        <span class="hero-stat-label">Primary markets</span>
       </div>
       <div class="hero-stat">
         <span class="hero-stat-num">100%</span>
@@ -581,24 +588,25 @@
 <section id="about">
   <div class="about-left">
     <div class="label">About</div>
-    <h2 class="section-title">Small team.<br/>Senior people.<br/>Real work.</h2>
+    <h2 class="section-title">Built in Serbia.<br/>Working across<br/>Scandinavia.</h2>
   </div>
   <div class="about-right">
     <p>
-      Most data problems aren't really data problems — they're
-      <strong>organizational and architectural problems</strong> wearing a data costume.
-      Bad pipelines, untrusted metrics, siloed teams, tools bought before
-      anyone thought about how they'd actually be used.
+      We started meeha in Novi Sad because we kept seeing the same thing:
+      fast-growing companies with <strong>data teams that were drowning</strong>.
+      Not because the engineers weren't good — but because nobody had
+      built the foundation properly in the first place.
     </p>
     <p>
-      We've been in those situations. We know how to untangle them without
-      blowing up everything that works.
+      Most of our clients are Swedish, Norwegian, and Danish companies
+      in the <strong>Series A–C range</strong> — past the scrappy startup phase,
+      not yet big enough to build a 10-person data platform team.
+      That gap is exactly where we work.
     </p>
     <p>
-      meeha works as <strong>an extension of your engineering team</strong> —
-      not a vendor that delivers a slide deck and disappears. We write code,
-      review your architecture, sit in your standups, and leave behind
-      systems your team can own and evolve.
+      We're remote by default, async-friendly, and we communicate in plain English
+      (and occasionally broken Swedish). We work in your timezone, show up to your standups,
+      and <strong>we don't disappear after the handover</strong>.
     </p>
 
     <div class="about-values">
@@ -1054,16 +1062,27 @@
 <section id="contact">
   <div class="cta-left">
     <div class="label">Get in touch</div>
-    <h2 class="section-title">Got a data problem<br/>worth solving?</h2>
+    <h2 class="section-title">Got a data mess<br/>that needs fixing?</h2>
     <p>
-      Tell us what you're dealing with. We read every message ourselves and
-      usually respond within a day. If it's not something we can help with,
-      we'll tell you that too.
+      Tell us what's going on. We reply to every message ourselves —
+      usually within a day, sometimes within an hour if the problem sounds interesting.
     </p>
+    <p style="margin-top:1rem">
+      We're based in <strong style="color:var(--text)">Novi Sad, Serbia</strong> and work
+      primarily with companies in Sweden, Norway, and Denmark.
+      If you're elsewhere and the problem is interesting, we're still listening.
+    </p>
+    <div class="location-badge">
+      <span>📍 Novi Sad, Serbia</span>
+      <span class="loc-dot">·</span>
+      <span>🕐 CET / CEST</span>
+      <span class="loc-dot">·</span>
+      <span>🇸🇪 🇳🇴 🇩🇰 primary markets</span>
+    </div>
   </div>
   <div class="cta-right">
     <h3>Drop us a line</h3>
-    <p>For project inquiries, architecture questions, or just to talk through a problem.</p>
+    <p>Project inquiries, architecture questions, or just want to talk through a problem before committing to anything.</p>
     <a href="mailto:hello@meeha.io" class="cta-email">hello@meeha.io</a>
     <div class="cta-divider">or</div>
     <a href="mailto:hello@meeha.io?subject=Discovery call request" class="btn-primary">Book a discovery call →</a>
@@ -1073,7 +1092,7 @@
 <!-- FOOTER -->
 <footer>
   <div class="footer-logo">meeha</div>
-  <p class="footer-legal">© 2026 meeha d.o.o. · Serbia</p>
+  <p class="footer-legal">© 2026 meeha d.o.o. · Novi Sad, Serbia · hello@meeha.io</p>
 </footer>
 
 <script>
