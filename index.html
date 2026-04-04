@@ -345,6 +345,65 @@
       display: flex; flex-wrap: wrap; gap: .4rem; align-items: center;
     }
 
+    /* ── CRAFT ── */
+    #craft {
+      border-bottom: 1px solid var(--border);
+      background: var(--bg);
+    }
+    .craft-header {
+      margin-bottom: 4rem;
+      max-width: 680px;
+    }
+    .craft-header .section-title { margin-bottom: 1rem; }
+    .craft-sub {
+      color: var(--muted); font-size: .9rem; line-height: 1.7;
+    }
+    .craft-sub a {
+      color: var(--accent); text-decoration: none;
+      border-bottom: 1px solid rgba(200,240,74,.3);
+    }
+    .craft-sub a:hover { border-color: var(--accent); }
+    .craft-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      border: 1px solid var(--border);
+    }
+    .craft-card {
+      padding: 2rem;
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      transition: background .2s;
+    }
+    .craft-card:hover { background: var(--surface); }
+    .craft-card:nth-child(3n) { border-right: none; }
+    .craft-card:nth-child(n+4) { border-bottom: none; }
+    .craft-icon {
+      width: 36px; height: 36px; margin-bottom: 1.2rem;
+    }
+    .craft-icon svg { width: 100%; height: 100%; }
+    .craft-card h3 {
+      font-size: .95rem; font-weight: 600; color: var(--white);
+      margin-bottom: .6rem; line-height: 1.4;
+    }
+    .craft-card p {
+      color: var(--muted); font-size: .85rem; line-height: 1.7;
+      margin-bottom: 1.2rem;
+    }
+    .craft-tools { display: flex; flex-wrap: wrap; gap: .35rem; }
+
+    @media (max-width: 900px) {
+      .craft-grid { grid-template-columns: repeat(2, 1fr); }
+      .craft-card:nth-child(3n) { border-right: 1px solid var(--border); }
+      .craft-card:nth-child(2n) { border-right: none; }
+      .craft-card:nth-child(n+5) { border-bottom: none; }
+    }
+    @media (max-width: 600px) {
+      .craft-grid { grid-template-columns: 1fr; }
+      .craft-card { border-right: none !important; border-bottom: 1px solid var(--border) !important; }
+      .craft-card:last-child { border-bottom: none !important; }
+    }
+
     /* ── CTA ── */
     #contact {
       display: grid;
@@ -442,6 +501,7 @@
     <li><a href="#services">Services</a></li>
     <li><a href="#approach">Approach</a></li>
     <li><a href="#stack">Stack</a></li>
+    <li><a href="#craft">Standards</a></li>
   </ul>
   <a href="#contact" class="nav-cta">Let's talk</a>
 </nav>
@@ -892,6 +952,101 @@
         <span class="tag">Kubernetes</span>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- CRAFT MANIFESTO -->
+<section id="craft">
+  <div class="craft-header">
+    <div class="label">How we build</div>
+    <h2 class="section-title">Our engineering<br/>standards</h2>
+    <p class="craft-sub">Inspired by the <a href="https://manifesto.softwarecraftsmanship.org/" target="_blank" rel="noopener">Software Craftsmanship Manifesto</a>. These aren't aspirations — they're non-negotiables on every project.</p>
+  </div>
+
+  <div class="craft-grid">
+
+    <div class="craft-card">
+      <div class="craft-icon">
+        <svg viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="14" stroke="#c8f04a" stroke-opacity=".3" stroke-width="1.5"/><path d="M10 16l4 4 8-8" stroke="#c8f04a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <h3>It isn't done until it's tested</h3>
+      <p>Every pipeline ships with unit tests, integration tests, and data quality checks. If there's no test coverage, it doesn't go to production. Period.</p>
+      <div class="craft-tools">
+        <span class="tag">dbt tests</span>
+        <span class="tag">Great Expectations</span>
+        <span class="tag">pytest</span>
+        <span class="tag">Soda</span>
+      </div>
+    </div>
+
+    <div class="craft-card">
+      <div class="craft-icon">
+        <svg viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="14" stroke="#c8f04a" stroke-opacity=".3" stroke-width="1.5"/><path d="M16 8v8l5 3" stroke="#c8f04a" stroke-width="2" stroke-linecap="round"/></svg>
+      </div>
+      <h3>Code quality is not optional</h3>
+      <p>We follow PEP 8, use linters (ruff, flake8), enforce type hints, and run pre-commit hooks. Readable code is maintainable code — and your team has to live with it after we leave.</p>
+      <div class="craft-tools">
+        <span class="tag">ruff</span>
+        <span class="tag">mypy</span>
+        <span class="tag">pre-commit</span>
+        <span class="tag">black</span>
+      </div>
+    </div>
+
+    <div class="craft-card">
+      <div class="craft-icon">
+        <svg viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="14" stroke="#c8f04a" stroke-opacity=".3" stroke-width="1.5"/><path d="M11 12h10M11 16h7M11 20h5" stroke="#c8f04a" stroke-width="2" stroke-linecap="round"/></svg>
+      </div>
+      <h3>Everything is version controlled</h3>
+      <p>Code, SQL, infrastructure, configs — all in Git. No snowflake environments (the bad kind). No undocumented manual steps. If it's not in the repo, it doesn't exist.</p>
+      <div class="craft-tools">
+        <span class="tag">Git</span>
+        <span class="tag">Terraform</span>
+        <span class="tag">CI/CD</span>
+        <span class="tag">GitOps</span>
+      </div>
+    </div>
+
+    <div class="craft-card">
+      <div class="craft-icon">
+        <svg viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="14" stroke="#c8f04a" stroke-opacity=".3" stroke-width="1.5"/><path d="M16 10v6m0 0l3 3m-3-3l-3 3" stroke="#c8f04a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <h3>Observability from day one</h3>
+      <p>Pipelines have logging, alerting, and lineage from the first deploy. You know what ran, when it ran, how long it took, and what broke — without having to ask us.</p>
+      <div class="craft-tools">
+        <span class="tag">OpenLineage</span>
+        <span class="tag">Monte Carlo</span>
+        <span class="tag">Airflow logs</span>
+        <span class="tag">PagerDuty</span>
+      </div>
+    </div>
+
+    <div class="craft-card">
+      <div class="craft-icon">
+        <svg viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="14" stroke="#c8f04a" stroke-opacity=".3" stroke-width="1.5"/><rect x="11" y="11" width="10" height="10" rx="2" stroke="#c8f04a" stroke-width="1.5"/><path d="M14 16h4M16 14v4" stroke="#c8f04a" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </div>
+      <h3>Incremental over full refresh</h3>
+      <p>We design for efficiency by default. Incremental models, partition pruning, smart backfills. Your cloud bill matters — we treat it like our own money.</p>
+      <div class="craft-tools">
+        <span class="tag">Incremental models</span>
+        <span class="tag">Partitioning</span>
+        <span class="tag">Cost monitoring</span>
+      </div>
+    </div>
+
+    <div class="craft-card">
+      <div class="craft-icon">
+        <svg viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="14" stroke="#c8f04a" stroke-opacity=".3" stroke-width="1.5"/><path d="M12 16c0-2.2 1.8-4 4-4s4 1.8 4 4-1.8 4-4 4" stroke="#c8f04a" stroke-width="1.5" stroke-linecap="round"/><circle cx="16" cy="16" r="1.5" fill="#c8f04a"/></svg>
+      </div>
+      <h3>Done means documented</h3>
+      <p>Every project ships with README files, dbt docs, architecture diagrams, and runbooks. The next engineer — including your own team — should be able to onboard without calling us.</p>
+      <div class="craft-tools">
+        <span class="tag">dbt docs</span>
+        <span class="tag">Confluence</span>
+        <span class="tag">Architecture diagrams</span>
+      </div>
+    </div>
+
   </div>
 </section>
 
